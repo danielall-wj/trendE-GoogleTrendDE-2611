@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="release-note-skill">
+<title>trendE-GoogleTrendDE-2611 릴리스 노트</title>
+<style>
+:root{--bg:#F7F8FA;--card:#FFFFFF;--ink:#1D232B;--muted:#5E6875;--line:#DFE3E8;--green:#1F8A5B;--chip:#EEF1F4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1A1F25;--ink:#E6EAEE;--muted:#9AA4AE;--line:#2B323A;--green:#4CC38A;--chip:#222830}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1A1F25;--ink:#E6EAEE;--muted:#9AA4AE;--line:#2B323A;--green:#4CC38A;--chip:#222830}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard","Noto Sans KR",system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+main{max-width:920px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:clamp(24px,5vw,34px);line-height:1.3;margin:0 0 8px}
+h2{font-size:21px;margin:40px 0 10px;padding-top:16px;border-top:1px solid var(--line)}
+h3{font-size:17px;margin:24px 0 8px}
+p,li{font-size:15px}
+a{color:var(--green)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;background:var(--chip);border-radius:6px;padding:1px 6px;word-break:break-all}
+pre{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto}
+pre code{background:none;padding:0}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+tr:last-child td{border-bottom:0}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:13px}
+blockquote{margin:12px 0;padding:8px 16px;border-left:4px solid var(--green);background:var(--card);border-radius:0 10px 10px 0;color:var(--muted)}
+img{max-width:100%;border-radius:10px;border:1px solid var(--line)}
+input[type=checkbox]{accent-color:var(--green);margin-right:6px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--muted);font-size:13px;margin-bottom:12px}
+.top button{font:inherit;font-size:13px;background:var(--chip);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:4px 10px;cursor:pointer}
+#raw{white-space:pre-wrap}
+</style>
+</head>
+<body>
+<main>
+<div class="top"><span>릴리스 노트 · <a href="./release_note.md">release_note.md</a>에서 생성</span><button id="theme" type="button">🌓 테마</button></div>
+<article id="doc"><pre id="raw"></pre></article>
+</main>
+<script type="text/markdown" id="md">
+# trendE-GoogleTrendDE-2611 릴리스 노트
+
+## 2026-11-18 · 처음 만듦
+
+- 예약 작업 실행기를 추가했습니다.
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script>
+const src = document.getElementById("md").textContent;
+const doc = document.getElementById("doc");
+// 한국어 문서의 날짜 범위(10/8~10/14)가 취소선이 되지 않도록, 코드 밖의 ~를 이스케이프
+const esc = src.split(/(\x60\x60\x60[\s\S]*?\x60\x60\x60|\x60[^\x60\n]*\x60)/).map((seg, i) => (i % 2 ? seg : seg.replace(/~/g, "\\~"))).join("");
+if (window.marked) {
+  doc.innerHTML = marked.parse(esc, { gfm: true });
+  doc.querySelectorAll("table").forEach((t) => { const w = document.createElement("div"); w.className = "tw"; t.replaceWith(w); w.appendChild(t); });
+}
+else { document.getElementById("raw").textContent = src; }
+const root = document.documentElement;
+try { const s = localStorage.getItem("release-note-theme"); if (s) root.dataset.theme = s; } catch {}
+document.getElementById("theme").addEventListener("click", () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("release-note-theme", root.dataset.theme); } catch {}
+});
+</script>
+</body>
+</html>
